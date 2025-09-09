@@ -17,6 +17,7 @@ import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -91,27 +92,63 @@ fun GreetingText(message: String, modifier: Modifier = Modifier) {
 @Composable
 fun Greeting(){
     val context = LocalContext.current
-    var texto1 by remember { mutableStateOf(value = "") }
+    var valorA by remember { mutableStateOf(value = "") }
+    var valorB by remember { mutableStateOf(value = "") }
+    var resul by remember { mutableStateOf(value = "") }
 
     Column (modifier = Modifier, horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center){
         Row {
-            Text(text = "Escriba su nombre")
+            Text(text = "Escriba los valores")
         }
         Row (modifier = Modifier.padding(10.dp,5.dp,10.dp,10.dp)){
             OutlinedTextField(
-                value = texto1,
-                label = {Text("Nombre")},
-                onValueChange = {texto1 = it}
+                value = valorA,
+                label = {Text("Primer valor")},
+                onValueChange = {valorA = it}
             )
         }
+
+        Row (modifier = Modifier.padding(10.dp,5.dp,10.dp,10.dp)){
+            OutlinedTextField(
+                value = valorB,
+                label = {Text("Segundo valor")},
+                onValueChange = {valorB = it}
+            )
+        }
+
         Row (Modifier.align(Alignment.CenterHorizontally)){
             Button(onClick = {
-                Toast.makeText(context,texto1,Toast.LENGTH_LONG).show()
+                //Toast.makeText(context,valorA,Toast.LENGTH_LONG).show()
+                val a = valorA.toInt()
+                val b = valorB.toInt()
+                val res = a + b
+                resul = res.toString()
             },
                 colors = ButtonDefaults.buttonColors(Color.DarkGray)) {
-                Text(text = "Enviar", color = Color.White)
+                Text(text = "Calcular", color = Color.White)
             }
+
+            OutlinedButton(onClick = {
+                //Toast.makeText(context,valorA,Toast.LENGTH_LONG).show()
+                val a = ""
+                val b = ""
+                val res = ""
+                valorA = a.toString()
+                valorB = b.toString()
+                resul = res.toString()
+            },
+                colors = ButtonDefaults.buttonColors(Color.DarkGray)) {
+                Text(text = "Borrar", color = Color.White)
+            }
+        }
+
+        Row (modifier = Modifier.padding(10.dp,5.dp,10.dp,10.dp)){
+            OutlinedTextField(
+                value = resul,
+                label = {Text("Resultado")},
+                onValueChange = {resul = it}
+            )
         }
         /*//Botones
         Row {
