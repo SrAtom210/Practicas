@@ -1,5 +1,6 @@
 package com.example.practicas
 
+import android.icu.text.DecimalFormat
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -121,39 +122,42 @@ fun Calculadora(){
     }
 
      */
-    var uno by remember { mutableStateOf(value = "1") }
-    var dos by remember { mutableStateOf(value = "2") }
-    var tres by remember { mutableStateOf(value = "3") }
-    var cuatro by remember { mutableStateOf(value = "4") }
-    var cinco by remember { mutableStateOf(value = "5") }
-    var seis by remember { mutableStateOf(value = "6") }
-    var siete by remember { mutableStateOf(value = "7") }
-    var ocho by remember { mutableStateOf(value = "8") }
-    var nueve by remember { mutableStateOf(value = "9") }
-    var cero by remember { mutableStateOf(value = "0") }
-    var suma by remember { mutableStateOf(value = "+") }
-    var resta by remember { mutableStateOf(value = "-") }
-    var multi by remember { mutableStateOf(value = "*") }
-    var divi by remember { mutableStateOf(value = "/") }
-    var borrar by remember { mutableStateOf(value = "") }
+    //Variables que guardan los numeros de la operacion
+    var num1 by remember { mutableStateOf(value = "") }
+    var num2 by remember { mutableStateOf(value = "") }
+
+    //Variables que muestran la operacion y el resultado
+    var operad by remember { mutableStateOf<Int?>(null) }
+    var operac by remember { mutableStateOf(value = "") }
+    var resul by remember { mutableStateOf(value = "") }
     Column {
         Row(modifier = Modifier.padding(10.dp,60.dp,10.dp,10.dp)) {
             Text(text = "Calculadora", )
         }
         Row (){
-            TextField(
-                value = borrar,
-                textStyle = androidx.compose.ui.text.TextStyle(textAlign = TextAlign.End,
-                    fontSize = 50.sp),
-                onValueChange = { borrar = it},
-                modifier = Modifier.size(500.dp,400.dp)
+            //Muestra el resultado
+            Text(
+                text =  if (resul.isNotEmpty()) resul else num2.ifEmpty() {num1},
+                fontSize = 100.sp,
+                modifier = Modifier.size(500.dp,300.dp),
+                textAlign = TextAlign.End
+            )
+        }
+
+        Row (){
+            //Muestra la operacion
+            Text(
+                text =  operac,
+                fontSize = 50.sp,
+                modifier = Modifier.size(500.dp,100.dp),
+                textAlign = TextAlign.End
             )
         }
 
         Row {
             Button(onClick = {
-                val ichi = uno.toInt()
-            },
+                num2 += 1
+                operac += 1 },
                 shape = RectangleShape,
 
                 colors = ButtonDefaults.buttonColors(Color.Black),
@@ -165,8 +169,8 @@ fun Calculadora(){
             }
 
             Button(onClick = {
-                val ni = dos.toInt()
-            },
+                num2 += 2
+                operac += 2 },
                 shape = RectangleShape,
                 colors = ButtonDefaults.buttonColors(Color.Black),
                 modifier = Modifier.size(105.dp)
@@ -176,8 +180,8 @@ fun Calculadora(){
             }
 
             Button(onClick = {
-                val san = tres.toInt()
-            },
+                num2 += 3
+                operac += 3 },
                 shape = RectangleShape,
                 colors = ButtonDefaults.buttonColors(Color.Black),
                 modifier = Modifier.size(105.dp)
@@ -186,8 +190,10 @@ fun Calculadora(){
 
             }
             Button(onClick = {
-                val sum = suma.toInt()
-            },
+                operad = 1
+                num1 = num2
+                num2 = ""
+                operac += "+" },
                 shape = RectangleShape,
                 colors = ButtonDefaults.buttonColors(Color.DarkGray),
                 modifier = Modifier.size(120.dp,105.dp)
@@ -200,8 +206,8 @@ fun Calculadora(){
         Column {
             Row {
                 Button(onClick = {
-                    val yon = cuatro.toInt()
-                },
+                    num2 += 4
+                    operac += 4 },
                     shape = RectangleShape,
                     colors = ButtonDefaults.buttonColors(Color.Black),
                     modifier = Modifier.size(105.dp)
@@ -211,8 +217,8 @@ fun Calculadora(){
                 }
 
                 Button(onClick = {
-                    val go = cinco.toInt()
-                },
+                    num2 += 5
+                    operac += 5 },
                     shape = RectangleShape,
                     colors = ButtonDefaults.buttonColors(Color.Black),
                     modifier = Modifier.size(105.dp)
@@ -222,8 +228,8 @@ fun Calculadora(){
                 }
 
                 Button(onClick = {
-                    val roku = seis.toInt()
-                },
+                    num2 += 6
+                    operac += 6 },
                     shape = RectangleShape,
                     colors = ButtonDefaults.buttonColors(Color.Black),
                     modifier = Modifier.size(105.dp)
@@ -232,8 +238,10 @@ fun Calculadora(){
 
                 }
                 Button(onClick = {
-                    val minus = resta.toInt()
-                },
+                    operad = 2
+                    num1 = num2
+                    num2 = ""
+                    operac += "-" },
                     shape = RectangleShape,
                     colors = ButtonDefaults.buttonColors(Color.DarkGray),
                     modifier = Modifier.size(120.dp,105.dp)
@@ -247,8 +255,8 @@ fun Calculadora(){
         Column {
             Row {
                 Button(onClick = {
-                    val nana = siete.toInt()
-                },
+                    num2 += 7
+                    operac += 7 },
                     shape = RectangleShape,
                     colors = ButtonDefaults.buttonColors(Color.Black),
                     modifier = Modifier.size(105.dp)
@@ -258,8 +266,8 @@ fun Calculadora(){
                 }
 
                 Button(onClick = {
-                    val hachi = ocho.toInt()
-                },
+                    num2 += 8
+                    operac += 8 },
                     shape = RectangleShape,
                     colors = ButtonDefaults.buttonColors(Color.Black),
                     modifier = Modifier.size(105.dp)
@@ -269,8 +277,8 @@ fun Calculadora(){
                 }
 
                 Button(onClick = {
-                    val kyu = nueve.toInt()
-                },
+                    num2 += 9
+                    operac += 9 },
                     shape = RectangleShape,
                     colors = ButtonDefaults.buttonColors(Color.Black),
                     modifier = Modifier.size(105.dp)
@@ -279,8 +287,10 @@ fun Calculadora(){
 
                 }
                 Button(onClick = {
-                    val por = multi.toInt()
-                },
+                    operad = 3
+                    num1 = num2
+                    num2 = ""
+                    operac += "*" },
                     shape = RectangleShape,
                     colors = ButtonDefaults.buttonColors(Color.DarkGray),
                     modifier = Modifier.size(120.dp,105.dp)
@@ -294,19 +304,21 @@ fun Calculadora(){
         Column {
             Row {
                 Button(onClick = {
-                    val nana = siete.toInt()
-                },
+                    num1 = ""
+                    num2 = ""
+                    operad = null
+                    resul = "" },
                     shape = RectangleShape,
                     colors = ButtonDefaults.buttonColors(Color.Black),
                     modifier = Modifier.size(105.dp)
                 ) {
-                    Text(text = "<-",style = TextStyle(fontSize = 42.sp), color = Color.White)
+                    Text(text = "AC",style = TextStyle(fontSize = 42.sp), color = Color(210,0,101))
 
                 }
 
                 Button(onClick = {
-                    val zero = cero.toInt()
-                },
+                    num2 += 0
+                    operac += 0 },
                     shape = RectangleShape,
                     colors = ButtonDefaults.buttonColors(Color.Black),
                     modifier = Modifier.size(105.dp)
@@ -316,18 +328,35 @@ fun Calculadora(){
                 }
 
                 Button(onClick = {
-                    val borr = borrar.toInt()
+                    val n1 = num1.toDoubleOrNull() ?: 0.0
+                    val n2 = num2.toDoubleOrNull() ?: 0.0
+                    val resulta = when (operad){
+                        1 -> n1 + n2
+                        2 -> n1 - n2
+                        3 -> n1 * n2
+                        4 -> if(n2 != 0.0) n1 / n2 else Double.NaN
+                        else -> n2
+                    }
+
+                    val decimales = DecimalFormat("#.######")
+                    resul = decimales.format(resulta)
+                    operac = ""
+                    operad = null
+                    num2 = ""
+                    num1 = ""
                 },
                     shape = RectangleShape,
                     colors = ButtonDefaults.buttonColors(Color.Black),
                     modifier = Modifier.size(105.dp)
                 ) {
-                    Text(text = "AC",style = TextStyle(fontSize = 42.sp), color = Color.White)
+                    Text(text = "=",style = TextStyle(fontSize = 42.sp), color = Color(65, 112, 206))
 
                 }
                 Button(onClick = {
-                    val div = divi.toInt()
-                },
+                    operad = 4
+                    num1 = num2
+                    num2 = ""
+                    operac += "/" },
                     shape = RectangleShape,
                     colors = ButtonDefaults.buttonColors(Color.DarkGray),
                     modifier = Modifier.size(120.dp,105.dp)
