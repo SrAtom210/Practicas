@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -60,6 +61,7 @@ fun ContentHomeView(navController: NavController){
 
         Row {
             Image(
+                modifier = Modifier.size(120.dp),
                 painter = painterResource(id = R.drawable.afc),
                 contentDescription = null
             )
@@ -77,6 +79,7 @@ fun ContentHomeView(navController: NavController){
 
         Row {
             Image(
+                modifier = Modifier.size(120.dp),
                 painter = painterResource(id = R.drawable.nfc),
                 contentDescription = null
             )
