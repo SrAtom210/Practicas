@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CutCornerShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -21,8 +22,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.practicas.Components.ActionButton
 import com.example.practicas.Components.MainButton
@@ -39,7 +43,7 @@ fun HomeView(navController: NavController){
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
-                title = { TitleBar("MENÚ") },
+                title = { TitleBar("MENU") },
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                     containerColor = Color(28, 62, 115)
                 )
@@ -59,39 +63,39 @@ fun ContentHomeView(navController: NavController){
         horizontalAlignment = Alignment.CenterHorizontally) {
         TextView("Conferencias NFL")
 
-        Row {
-            Image(
-                modifier = Modifier.size(120.dp),
-                painter = painterResource(id = R.drawable.afc),
-                contentDescription = null
-            )
-        }
-
         Row(){
             Button(onClick = {navController.navigate("Detail/${id}")},
-                shape = CutCornerShape(50.dp),
-                colors = ButtonDefaults.buttonColors(Color(220, 35, 42))) {
-
-                Text(text = "                        AFC \nAmerican Football Conference",
-                    color = Color.White)
+                shape = RoundedCornerShape(10.dp),
+                colors = ButtonDefaults.buttonColors(
+                    Color(207, 8, 33))) {
+                Image(
+                    modifier = Modifier.size(110.dp),
+                    painter = painterResource(id = R.drawable.afc),
+                    contentDescription = null
+                )
+                Text(text = "                          AFC \n  American Football Conference",
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 15.sp)
             }
         }
 
-        Row {
-            Image(
-                modifier = Modifier.size(120.dp),
-                painter = painterResource(id = R.drawable.nfc),
-                contentDescription = null
-            )
-        }
         Row(){
 
             Button(onClick = {navController.navigate("Detail2/${id2}")},
-                shape = CutCornerShape(50.dp),
-                colors = ButtonDefaults.buttonColors(Color(77, 116, 149))) {
+                shape = RoundedCornerShape(10.dp),
+                colors = ButtonDefaults.buttonColors(
+                    Color(0, 59, 102))) {
+                Image(
+                    modifier = Modifier.size(110.dp),
+                    painter = painterResource(id = R.drawable.nfc),
+                    contentDescription = null
+                )
 
-                Text(text = "                        NFC \nNational Football Conference",
-                    color = Color.White)
+                Text(text = "                          NFC \n  National Football Conference",
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 15.sp)
             }
         }
     }
