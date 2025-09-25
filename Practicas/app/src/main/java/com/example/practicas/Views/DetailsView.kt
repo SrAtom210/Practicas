@@ -92,7 +92,7 @@ fun ContentDetailView(navController: NavController, id: Int){
             }
         }
         Row(verticalAlignment = Alignment.Bottom){
-            Button(onClick = {},
+            Button(onClick = {navController.navigate("Detail12/${id12}")},
                 Modifier.size(400.dp,180.dp).padding(top = 50.dp),
                 shape = RoundedCornerShape(10.dp),
                 colors = ButtonDefaults.buttonColors(
@@ -109,7 +109,7 @@ fun ContentDetailView(navController: NavController, id: Int){
             }
         }
         Row(verticalAlignment = Alignment.Bottom){
-            Button(onClick = {},
+            Button(onClick = {navController.navigate("Detail13/${id13}")},
                 Modifier.size(400.dp,180.dp).padding(top = 50.dp),
                 shape = RoundedCornerShape(10.dp),
                 colors = ButtonDefaults.buttonColors(
@@ -127,7 +127,7 @@ fun ContentDetailView(navController: NavController, id: Int){
         }
         Row(verticalAlignment = Alignment.Bottom) {
             Button(
-                onClick = {},
+                onClick = {navController.navigate("Detail14/${id14}")},
                 Modifier.size(400.dp, 180.dp).padding(top = 50.dp),
                 shape = RoundedCornerShape(10.dp),
                 colors = ButtonDefaults.buttonColors(
