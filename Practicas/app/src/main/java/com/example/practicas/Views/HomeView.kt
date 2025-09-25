@@ -81,7 +81,6 @@ fun ContentHomeView(navController: NavController){
         }
 
         Row(){
-
             Button(onClick = {navController.navigate("Detail2/${id2}")},
                 shape = RoundedCornerShape(10.dp),
                 colors = ButtonDefaults.buttonColors(

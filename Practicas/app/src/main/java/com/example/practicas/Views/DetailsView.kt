@@ -75,17 +75,17 @@ fun ContentDetailView(navController: NavController, id: Int){
         horizontalAlignment = Alignment.CenterHorizontally
         ) {
         Row(verticalAlignment = Alignment.Bottom){
-            Button(onClick = {},
+            Button(onClick = {navController.navigate("Detail11/${id11}")},
                 Modifier.size(400.dp,180.dp).padding(top = 50.dp),
                 shape = RoundedCornerShape(10.dp),
                 colors = ButtonDefaults.buttonColors(
                     Color(31, 11, 95))) {
                 Image(
-                    modifier = Modifier.size(150.dp),
+                    modifier = Modifier.size(180.dp),
                     painter = painterResource(id = R.drawable.raven),
                     contentDescription = null
                 )
-                Text(text = " Baltimore\n  \nRAVENS",
+                Text(text = "  Baltimore\n  \n  RAVENS",
                     color = Color.White,
                     fontWeight = FontWeight.Bold,
                     fontSize = 30.sp)
@@ -96,13 +96,13 @@ fun ContentDetailView(navController: NavController, id: Int){
                 Modifier.size(400.dp,180.dp).padding(top = 50.dp),
                 shape = RoundedCornerShape(10.dp),
                 colors = ButtonDefaults.buttonColors(
-                    Color(31, 11, 95))) {
+                    Color(0, 0, 0))) {
                 Image(
-                    modifier = Modifier.size(150.dp),
-                    painter = painterResource(id = R.drawable.raven),
+                    modifier = Modifier.size(180.dp),
+                    painter = painterResource(id = R.drawable.pitts),
                     contentDescription = null
                 )
-                Text(text = " Baltimore\n  \nRAVENS",
+                Text(text = "  Pittsburgh \n  \n  STEELERS",
                     color = Color.White,
                     fontWeight = FontWeight.Bold,
                     fontSize = 30.sp)
@@ -113,33 +113,38 @@ fun ContentDetailView(navController: NavController, id: Int){
                 Modifier.size(400.dp,180.dp).padding(top = 50.dp),
                 shape = RoundedCornerShape(10.dp),
                 colors = ButtonDefaults.buttonColors(
-                    Color(31, 11, 95))) {
+                    Color(255, 75, 0))) {
                 Image(
-                    modifier = Modifier.size(150.dp),
-                    painter = painterResource(id = R.drawable.raven),
+                    modifier = Modifier.size(180.dp),
+                    painter = painterResource(id = R.drawable.denver),
                     contentDescription = null
                 )
-                Text(text = " Baltimore\n  \nRAVENS",
+                Text(text = "  Denver\n  \n  BRONCOS",
                     color = Color.White,
                     fontWeight = FontWeight.Bold,
                     fontSize = 30.sp)
             }
         }
-        Row(verticalAlignment = Alignment.Bottom){
-            Button(onClick = {},
-                Modifier.size(400.dp,180.dp).padding(top = 50.dp),
+        Row(verticalAlignment = Alignment.Bottom) {
+            Button(
+                onClick = {},
+                Modifier.size(400.dp, 180.dp).padding(top = 50.dp),
                 shape = RoundedCornerShape(10.dp),
                 colors = ButtonDefaults.buttonColors(
-                    Color(31, 11, 95))) {
+                    Color(0, 142, 151)
+                )
+            ) {
                 Image(
-                    modifier = Modifier.size(150.dp),
-                    painter = painterResource(id = R.drawable.raven),
+                    modifier = Modifier.size(180.dp),
+                    painter = painterResource(id = R.drawable.miami),
                     contentDescription = null
                 )
-                Text(text = " Baltimore\n  \nRAVENS",
+                Text(
+                    text = "  Miami\n  \n  DOLPHINS",
                     color = Color.White,
                     fontWeight = FontWeight.Bold,
-                    fontSize = 30.sp)
+                    fontSize = 30.sp
+                )
             }
         }
     }
